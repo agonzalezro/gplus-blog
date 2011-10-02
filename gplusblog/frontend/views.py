@@ -12,6 +12,7 @@ class Index(View):
     def dispatch_request(self):
         return render_template('index.html')
 
+
 class Buzz(View):
     def dispatch_request(self):
         app = create_app()
@@ -25,6 +26,7 @@ class Buzz(View):
         json_data = json.loads(data.read())
 
         return Response(json_data.get('items'))
+
 
 class Markdown(View):
     def dispatch_request(self):

@@ -10,8 +10,10 @@ def create_app(config_filename='default_settings.py'):
     setup_urls(app)
     return app
 
+
 def create_manager(app):
     return Manager(app)
+
 
 def main():
     import commands

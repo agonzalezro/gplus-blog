@@ -14,5 +14,5 @@ setup(
                       'Flask-Script',
                       'markdown2'],
 
-    entry_points = {'console_scripts': ['blog=gplusblog:main']},
+    entry_points={'console_scripts': ['blog=gplusblog:main']},
 )
