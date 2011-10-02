@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script>
+      function get_buzz(){
+        $.get('/buzz', function(data) {
+            $('.result').html(data);
+              $("#buzz").html(data);
+            });
+      }
+
+      $(document).ready(function(){
+        get_buzz();
+      });
+    </script>
+  </head>
+  <body>
+    <div id="buzz">
+    </div>
+  </body>
+</body>
