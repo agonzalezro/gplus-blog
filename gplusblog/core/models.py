@@ -12,6 +12,7 @@ class Post(object):
     title = None
     content = None
     url = None
+    replies = None
 
     @classmethod
     def get_from_json(cls, json_data):
@@ -24,7 +25,7 @@ class Post(object):
 
     def updated_if_needed(self, updated_date):
         updated_date = string_to_datetime(updated_date)
-        if updated_date > self.published + datetime.timedelta(minutes=5):
+        if updated_date > self.published + datetime.timedelta(seconds=5):
             return updated_date
 
     def fill_data_from_json(self, json_data):
@@ -34,6 +35,7 @@ class Post(object):
         self.updated = self.updated_if_needed(json_data.get('updated'))
         self.url = json_data.get('url')
         self.content = Markup(json_data.get('object').get('content'))
+        self.replies = json_data.get('object').get('replies').get('totalItems')
 
 
 class Reshared(Post):

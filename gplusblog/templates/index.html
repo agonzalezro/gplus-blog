@@ -18,6 +18,15 @@
         {{ post.annotation }}
       {% endif %}
       {{ post.content }}
+      <p class="replies"><a href="{{ post.url }}">
+        {% if post.replies == 0 %}
+          No replies
+        {% elif post.replies == 1 %}
+          1 reply
+        {% else %}
+          {{ post.replies }} replies
+        {% endif %}
+      </a></p>
       </div>
     {% endfor %}
   </div>
