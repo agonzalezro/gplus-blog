@@ -9,8 +9,8 @@ Google_Plus_blog.egg-info/requires.txt
 Google_Plus_blog.egg-info/top_level.txt
 gplusblog/__init__.py
 gplusblog/commands.py
-gplusblog/default_settings.py
 gplusblog/urls.py
 gplusblog/frontend/__init__.py
 gplusblog/frontend/views.py
+gplusblog/static/js/index.js
 gplusblog/templates/index.html

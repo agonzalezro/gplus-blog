@@ -1,20 +1,15 @@
 import json
 import urllib2
-import markdown2
-
-from gplusblog import create_app
 
 from flask.views import View
-from flask import render_template, Response, request
+from flask import render_template
+
+from gplusblog import create_app
+from gplusblog.core.models import Post
 
 
 class Index(View):
-    def dispatch_request(self):
-        return render_template('index.html')
-
-
-class Buzz(View):
-    def dispatch_request(self):
+    def get_buzz(self):
         app = create_app()
 
         url = ('https://www.googleapis.com/'
@@ -24,11 +19,10 @@ class Buzz(View):
 
         data = urllib2.urlopen(url)
         json_data = json.loads(data.read())
+        buzz =[]
+        for item in json_data.get('items'):
+            buzz.append(Post.get_from_json(item))
+        return buzz
 
-        return Response(json_data.get('items'))
-
-
-class Markdown(View):
     def dispatch_request(self):
-        data = request.args.get('data')
-        return Response(markdown2.markdown(data))
+        return render_template('index.html', buzz=self.get_buzz())

@@ -1,17 +1,27 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Gplus blog</title>
-  </head>
-  <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-    <script src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
-    <script src="http://ajax.cdnjs.com/ajax/libs/underscore.js/1.1.6/underscore-min.js"></script>
-    <script src="http://ajax.cdnjs.com/ajax/libs/backbone.js/0.3.3/backbone-min.js"></script>
-    <script type="text/javascript" src="/static/js/index.js"></script>
-    <div id="buzz">
-    </div>
-  </body>
-</body>
+{% extends "base.html" %}
+
+{% block content %}
+  {% if buzz %}
+  <div id="buzz">
+    {% for post in buzz %}
+      {% if post.annotation %}
+        <div class="original">
+      {% else %}
+        <div class="reshared">
+      {% endif %}
+      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      <h3 class="published">{{ post.published }}</h3>
+      {% if post.updated %}
+        <h3 class="updated">{{ post.updated }}</h3>
+      {% endif %}
+      {% if post.annotation %}
+        {{ post.annotation }}
+      {% endif %}
+      {{ post.content }}
+      </div>
+    {% endfor %}
+  </div>
+  {% else %}
+    <p>No public buzz found on Google+ for the account configured.</p>
+  {% endif %}
+{% endblock content %}
